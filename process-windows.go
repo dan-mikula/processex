@@ -1,18 +1,19 @@
+//go:build windows
 // +build windows
 
 package processex
 
-import (  
+import (
 	"syscall"
 
 	"golang.org/x/sys/windows"
 ) 
 
-func newProcessFromEntry(entry *windows.ProcessEntry32) *process {
+func newProcessFromEntry(entry *windows.ProcessEntry32) *ProcessEx {
 	if entry == nil {
 		return nil
 	}
-	return newProcess(getProcessName(entry), int(entry.ProcessID), int(entry.ParentProcessID))
+	return newProcessEx(getProcessName(entry), int(entry.ProcessID), int(entry.ParentProcessID))
 }
 
 // ------------------------------------------------------------------

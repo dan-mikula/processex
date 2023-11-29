@@ -1,4 +1,5 @@
-//+build !windows
+//go:build !windows
+// +build !windows
 
 package processex
 
@@ -6,7 +7,6 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -33,7 +33,7 @@ func (p *linuxProcesses) fetchPID(path string) (int, error) {
 func (p *linuxProcesses) fetchName(path string) (string, error) {
 	// The status file contains the name of the process in its first line.
 	// The line looks like "Name: theProcess".
-	f, err := ioutil.ReadFile(path)
+	f, err := os.ReadFile(path)
 	if err != nil {
 		return "", err
 	}
@@ -100,7 +100,7 @@ func (p *linuxProcesses) setUpdatedAt() {
 }
 
 func (p *linuxProcesses) getProcesses() error {
-	if time.Now().Sub(p.getUpdatedAt()) < time.Second*3 {
+	if time.Since(p.getUpdatedAt()) < time.Second*3 {
 		return nil
 	}
 	p.setUpdatedAt()
@@ -137,14 +137,14 @@ func (p *linuxProcesses) FindByPID(pid int) ([]*os.Process, []*ProcessEx, error)
 // ------------------------------------------------------------------
 
 type winProcesses struct {
-	processes
+	// processes
 }
 
 // ------------------------------------------------------------------
 
-func (p *winProcesses) getProcesses() error {
-	return errors.New("not windows os")
-}
+// func (p *winProcesses) getProcesses() error {
+// 	return errors.New("not windows os")
+// }
 
 // ------------------------------------------------------------------
 

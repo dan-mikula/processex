@@ -1,3 +1,5 @@
+# Fork - fixed some issues.
+
 ProcessEx
 =======
 
@@ -26,7 +28,7 @@ usage
 			fmt.Printf("Process %v find error: %v", processName, err)
 			os.Exit(1)
 		}
-		fmt.Printf("Process %v PID: %v", processName, process.Pid)
+		fmt.Printf("Process %v PID: %v", processName, process[0].Pid)
 	}
 ```
 

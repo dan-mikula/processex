@@ -88,7 +88,7 @@ func (p *linuxProcesses) getProcesses() error {
 
 // FindByName - FindByName
 func (p *linuxProcesses) FindByName(name string) ([]*os.Process, []*ProcessEx, error) {
-	return nil, errors.New("not linux os")
+	return nil, nil, errors.New("not linux os")
 }
 
 // FindByPID - FindByPID

@@ -11,7 +11,7 @@ ProcessEx - find a os.Process (operating system process) by Name (FindByName) or
 installation
 ------------
 
-    go get github.com/dan-mikula/processex.git
+    go get github.com/dan-mikula/processex
 
 usage
 -----
